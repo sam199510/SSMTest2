@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.S_indentMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.entity.S_indent" >
+    <id column="i_id" property="iId" jdbcType="INTEGER" />
+    <result column="i_buyerID" property="iBuyerid" jdbcType="INTEGER" />
+    <result column="i_bookID" property="iBookid" jdbcType="INTEGER" />
+    <result column="i_bargainTime" property="iBargaintime" jdbcType="TIMESTAMP" />
+    <result column="i_buyerAddress" property="iBuyeraddress" jdbcType="VARCHAR" />
+    <result column="i_bookName" property="iBookname" jdbcType="VARCHAR" />
+    <result column="i_bookCover" property="iBookcover" jdbcType="VARCHAR" />
+    <result column="i_bookPrice" property="iBookprice" jdbcType="REAL" />
+    <result column="i_bookPublisher" property="iBookpublisher" jdbcType="VARCHAR" />
+    <result column="i_commentState" property="iCommentstate" jdbcType="INTEGER" />
+    <result column="i_buyerMobile" property="iBuyermobile" jdbcType="BIGINT" />
+    <result column="i_buyerName" property="iBuyername" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    i_id, i_buyerID, i_bookID, i_bargainTime, i_buyerAddress, i_bookName, i_bookCover, 
+    i_bookPrice, i_bookPublisher, i_commentState, i_buyerMobile, i_buyerName
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_indent
+    where i_id = #{iId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from s_indent
+    where i_id = #{iId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.entity.S_indent" >
+    insert into s_indent (i_id, i_buyerID, i_bookID, 
+      i_bargainTime, i_buyerAddress, i_bookName, 
+      i_bookCover, i_bookPrice, i_bookPublisher, 
+      i_commentState, i_buyerMobile, i_buyerName
+      )
+    values (#{iId,jdbcType=INTEGER}, #{iBuyerid,jdbcType=INTEGER}, #{iBookid,jdbcType=INTEGER}, 
+      #{iBargaintime,jdbcType=TIMESTAMP}, #{iBuyeraddress,jdbcType=VARCHAR}, #{iBookname,jdbcType=VARCHAR}, 
+      #{iBookcover,jdbcType=VARCHAR}, #{iBookprice,jdbcType=REAL}, #{iBookpublisher,jdbcType=VARCHAR}, 
+      #{iCommentstate,jdbcType=INTEGER}, #{iBuyermobile,jdbcType=BIGINT}, #{iBuyername,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.entity.S_indent" >
+    insert into s_indent
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="iId != null" >
+        i_id,
+      </if>
+      <if test="iBuyerid != null" >
+        i_buyerID,
+      </if>
+      <if test="iBookid != null" >
+        i_bookID,
+      </if>
+      <if test="iBargaintime != null" >
+        i_bargainTime,
+      </if>
+      <if test="iBuyeraddress != null" >
+        i_buyerAddress,
+      </if>
+      <if test="iBookname != null" >
+        i_bookName,
+      </if>
+      <if test="iBookcover != null" >
+        i_bookCover,
+      </if>
+      <if test="iBookprice != null" >
+        i_bookPrice,
+      </if>
+      <if test="iBookpublisher != null" >
+        i_bookPublisher,
+      </if>
+      <if test="iCommentstate != null" >
+        i_commentState,
+      </if>
+      <if test="iBuyermobile != null" >
+        i_buyerMobile,
+      </if>
+      <if test="iBuyername != null" >
+        i_buyerName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="iId != null" >
+        #{iId,jdbcType=INTEGER},
+      </if>
+      <if test="iBuyerid != null" >
+        #{iBuyerid,jdbcType=INTEGER},
+      </if>
+      <if test="iBookid != null" >
+        #{iBookid,jdbcType=INTEGER},
+      </if>
+      <if test="iBargaintime != null" >
+        #{iBargaintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iBuyeraddress != null" >
+        #{iBuyeraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="iBookname != null" >
+        #{iBookname,jdbcType=VARCHAR},
+      </if>
+      <if test="iBookcover != null" >
+        #{iBookcover,jdbcType=VARCHAR},
+      </if>
+      <if test="iBookprice != null" >
+        #{iBookprice,jdbcType=REAL},
+      </if>
+      <if test="iBookpublisher != null" >
+        #{iBookpublisher,jdbcType=VARCHAR},
+      </if>
+      <if test="iCommentstate != null" >
+        #{iCommentstate,jdbcType=INTEGER},
+      </if>
+      <if test="iBuyermobile != null" >
+        #{iBuyermobile,jdbcType=BIGINT},
+      </if>
+      <if test="iBuyername != null" >
+        #{iBuyername,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.entity.S_indent" >
+    update s_indent
+    <set >
+      <if test="iBuyerid != null" >
+        i_buyerID = #{iBuyerid,jdbcType=INTEGER},
+      </if>
+      <if test="iBookid != null" >
+        i_bookID = #{iBookid,jdbcType=INTEGER},
+      </if>
+      <if test="iBargaintime != null" >
+        i_bargainTime = #{iBargaintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iBuyeraddress != null" >
+        i_buyerAddress = #{iBuyeraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="iBookname != null" >
+        i_bookName = #{iBookname,jdbcType=VARCHAR},
+      </if>
+      <if test="iBookcover != null" >
+        i_bookCover = #{iBookcover,jdbcType=VARCHAR},
+      </if>
+      <if test="iBookprice != null" >
+        i_bookPrice = #{iBookprice,jdbcType=REAL},
+      </if>
+      <if test="iBookpublisher != null" >
+        i_bookPublisher = #{iBookpublisher,jdbcType=VARCHAR},
+      </if>
+      <if test="iCommentstate != null" >
+        i_commentState = #{iCommentstate,jdbcType=INTEGER},
+      </if>
+      <if test="iBuyermobile != null" >
+        i_buyerMobile = #{iBuyermobile,jdbcType=BIGINT},
+      </if>
+      <if test="iBuyername != null" >
+        i_buyerName = #{iBuyername,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where i_id = #{iId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.entity.S_indent" >
+    update s_indent
+    set i_buyerID = #{iBuyerid,jdbcType=INTEGER},
+      i_bookID = #{iBookid,jdbcType=INTEGER},
+      i_bargainTime = #{iBargaintime,jdbcType=TIMESTAMP},
+      i_buyerAddress = #{iBuyeraddress,jdbcType=VARCHAR},
+      i_bookName = #{iBookname,jdbcType=VARCHAR},
+      i_bookCover = #{iBookcover,jdbcType=VARCHAR},
+      i_bookPrice = #{iBookprice,jdbcType=REAL},
+      i_bookPublisher = #{iBookpublisher,jdbcType=VARCHAR},
+      i_commentState = #{iCommentstate,jdbcType=INTEGER},
+      i_buyerMobile = #{iBuyermobile,jdbcType=BIGINT},
+      i_buyerName = #{iBuyername,jdbcType=VARCHAR}
+    where i_id = #{iId,jdbcType=INTEGER}
+  </update>
+</mapper>
