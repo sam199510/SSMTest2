@@ -9,7 +9,7 @@
     <result column="u_address" property="uAddress" jdbcType="VARCHAR" />
   </resultMap>
 
-  <resultMap id="queryForListMap" type="com.ssm.entity.S_user" >
+  <resultMap id="CollectionListMap" type="com.ssm.entity.S_user" >
     <id column="u_id" property="uId" jdbcType="INTEGER" />
     <result column="u_userName" property="uUsername" jdbcType="VARCHAR" />
     <result column="u_password" property="uPassword" jdbcType="VARCHAR" />
@@ -22,6 +22,22 @@
       <result column="cl_bookName" property="clBookname" jdbcType="VARCHAR" />
       <result column="cl_bookPrice" property="clBookprice" jdbcType="REAL" />
       <result column="cl_bookCover" property="clBookcover" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
+
+  <resultMap id="CommentListMap" type="com.ssm.entity.S_user" >
+    <id column="u_id" property="uId" jdbcType="INTEGER" />
+    <result column="u_userName" property="uUsername" jdbcType="VARCHAR" />
+    <result column="u_password" property="uPassword" jdbcType="VARCHAR" />
+    <result column="u_mobile" property="uMobile" jdbcType="BIGINT" />
+    <result column="u_address" property="uAddress" jdbcType="VARCHAR" />
+    <collection property="s_comments" javaType="java.util.List" ofType="com.ssm.entity.S_comment">
+      <id column="cm_id" property="cmId" jdbcType="INTEGER" />
+      <result column="cm_bookID" property="cmBookid" jdbcType="INTEGER" />
+      <result column="cm_buyerID" property="cmBuyerid" jdbcType="INTEGER" />
+      <result column="cm_commentTime" property="cmCommenttime" jdbcType="DATE" />
+      <result column="cm_content" property="cmContent" jdbcType="VARCHAR" />
+      <result column="cm_buyerName" property="cmBuyername" jdbcType="VARCHAR" />
     </collection>
   </resultMap>
 
@@ -107,7 +123,7 @@
       u_address = #{uAddress,jdbcType=VARCHAR}
     where u_id = #{uId,jdbcType=INTEGER}
   </update>
-  <select id="getCollectBookByUsername" parameterType="java.lang.String" resultMap="queryForListMap">
+  <select id="getCollectBookByUsername" parameterType="java.lang.String" resultMap="CollectionListMap">
     SELECT *
     FROM s_user su
     LEFT JOIN s_collection scl
@@ -117,5 +133,12 @@
   <select id="selectAllUsers" resultMap="BaseResultMap">
     SELECT *
     FROM s_user
+  </select>
+  <select id="getCommentContentByUsername" parameterType="java.lang.String" resultMap="CommentListMap">
+    SELECT *
+    FROM s_user su
+    LEFT JOIN s_comment scm
+    ON su.u_id = scm.cm_buyerID
+    WHERE su.u_userName = #{username,jdbcType=VARCHAR}
   </select>
 </mapper>

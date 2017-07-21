@@ -24,4 +24,7 @@ public interface S_userMapper {
 
     //根据用户名获取收藏的图书的方法
     List<S_user> getCollectBookByUsername(String username);
+
+    //根据用户名搜索评论的方法
+    List<S_user> getCommentContentByUsername(String username);
 }

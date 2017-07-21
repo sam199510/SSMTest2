@@ -1,0 +1,13 @@
+/Users/fei/Documents/Workspace/IDEAWorkspace/J2EE/SSMTest2/src/main/java/com/ssm/dao/S_commentMapper.java
+/Users/fei/Documents/Workspace/IDEAWorkspace/J2EE/SSMTest2/src/main/java/com/ssm/entity/S_book.java
+/Users/fei/Documents/Workspace/IDEAWorkspace/J2EE/SSMTest2/src/main/java/com/ssm/dao/S_indentMapper.java
+/Users/fei/Documents/Workspace/IDEAWorkspace/J2EE/SSMTest2/src/main/java/com/ssm/entity/S_indent.java
+/Users/fei/Documents/Workspace/IDEAWorkspace/J2EE/SSMTest2/src/main/java/com/ssm/dao/S_userMapper.java
+/Users/fei/Documents/Workspace/IDEAWorkspace/J2EE/SSMTest2/src/main/java/com/ssm/entity/S_comment.java
+/Users/fei/Documents/Workspace/IDEAWorkspace/J2EE/SSMTest2/src/main/java/com/ssm/controller/SSMController.java
+/Users/fei/Documents/Workspace/IDEAWorkspace/J2EE/SSMTest2/src/main/java/com/ssm/service/UserServiceI.java
+/Users/fei/Documents/Workspace/IDEAWorkspace/J2EE/SSMTest2/src/main/java/com/ssm/entity/S_user.java
+/Users/fei/Documents/Workspace/IDEAWorkspace/J2EE/SSMTest2/src/main/java/com/ssm/service/impl/UserServiceImpl.java
+/Users/fei/Documents/Workspace/IDEAWorkspace/J2EE/SSMTest2/src/main/java/com/ssm/dao/S_bookMapper.java
+/Users/fei/Documents/Workspace/IDEAWorkspace/J2EE/SSMTest2/src/main/java/com/ssm/dao/S_collectionMapper.java
+/Users/fei/Documents/Workspace/IDEAWorkspace/J2EE/SSMTest2/src/main/java/com/ssm/entity/S_collection.java

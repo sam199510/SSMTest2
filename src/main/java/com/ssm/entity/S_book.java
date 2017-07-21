@@ -1,5 +1,7 @@
 package com.ssm.entity;
 
+import java.util.List;
+
 public class S_book {
     private Integer bId;
 
@@ -20,6 +22,12 @@ public class S_book {
     private String bCover;
 
     private Integer bType;
+
+    private List<S_collection> s_collections;
+
+    private List<S_comment> s_comments;
+
+    private List<S_indent> s_indents;
 
     public Integer getbId() {
         return bId;
@@ -99,5 +107,29 @@ public class S_book {
 
     public void setbType(Integer bType) {
         this.bType = bType;
+    }
+
+    public List<S_collection> getS_collections() {
+        return s_collections;
+    }
+
+    public void setS_collections(List<S_collection> s_collections) {
+        this.s_collections = s_collections;
+    }
+
+    public List<S_comment> getS_comments() {
+        return s_comments;
+    }
+
+    public void setS_comments(List<S_comment> s_comments) {
+        this.s_comments = s_comments;
+    }
+
+    public List<S_indent> getS_indents() {
+        return s_indents;
+    }
+
+    public void setS_indents(List<S_indent> s_indents) {
+        this.s_indents = s_indents;
     }
 }

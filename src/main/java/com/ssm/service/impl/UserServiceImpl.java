@@ -33,4 +33,10 @@ public class UserServiceImpl implements UserServiceI {
     public List<S_user> getCollectBookByUsername(String username) {
         return this.s_userMapper.getCollectBookByUsername(username);
     }
+
+    //根据用户名搜索评论的方法
+    @Override
+    public List<S_user> getCommentContentByUsername(String username) {
+        return this.s_userMapper.getCommentContentByUsername(username);
+    }
 }
