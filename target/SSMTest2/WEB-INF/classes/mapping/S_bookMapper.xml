@@ -12,7 +12,38 @@
     <result column="b_repertory" property="bRepertory" jdbcType="INTEGER" />
     <result column="b_cover" property="bCover" jdbcType="VARCHAR" />
     <result column="b_type" property="bType" jdbcType="INTEGER" />
+    <collection property="s_collections" javaType="java.util.List" ofType="com.ssm.entity.S_collection">
+      <id column="cl_id" property="clId" jdbcType="INTEGER" />
+      <result column="cl_collectorID" property="clCollectorid" jdbcType="INTEGER" />
+      <result column="cl_bookID" property="clBookid" jdbcType="INTEGER" />
+      <result column="cl_bookName" property="clBookname" jdbcType="VARCHAR" />
+      <result column="cl_bookPrice" property="clBookprice" jdbcType="REAL" />
+      <result column="cl_bookCover" property="clBookcover" jdbcType="VARCHAR" />
+    </collection>
+    <collection property="s_comments" javaType="java.util.List" ofType="com.ssm.entity.S_comment">
+      <id column="cm_id" property="cmId" jdbcType="INTEGER" />
+      <result column="cm_bookID" property="cmBookid" jdbcType="INTEGER" />
+      <result column="cm_buyerID" property="cmBuyerid" jdbcType="INTEGER" />
+      <result column="cm_commentTime" property="cmCommenttime" jdbcType="DATE" />
+      <result column="cm_content" property="cmContent" jdbcType="VARCHAR" />
+      <result column="cm_buyerName" property="cmBuyername" jdbcType="VARCHAR" />
+    </collection>
+    <collection property="s_indents" javaType="java.util.List" ofType="com.ssm.entity.S_indent">
+      <id column="i_id" property="iId" jdbcType="INTEGER" />
+      <result column="i_buyerID" property="iBuyerid" jdbcType="INTEGER" />
+      <result column="i_bookID" property="iBookid" jdbcType="INTEGER" />
+      <result column="i_bargainTime" property="iBargaintime" jdbcType="TIMESTAMP" />
+      <result column="i_buyerAddress" property="iBuyeraddress" jdbcType="VARCHAR" />
+      <result column="i_bookName" property="iBookname" jdbcType="VARCHAR" />
+      <result column="i_bookCover" property="iBookcover" jdbcType="VARCHAR" />
+      <result column="i_bookPrice" property="iBookprice" jdbcType="REAL" />
+      <result column="i_bookPublisher" property="iBookpublisher" jdbcType="VARCHAR" />
+      <result column="i_commentState" property="iCommentstate" jdbcType="INTEGER" />
+      <result column="i_buyerMobile" property="iBuyermobile" jdbcType="BIGINT" />
+      <result column="i_buyerName" property="iBuyername" jdbcType="VARCHAR" />
+    </collection>
   </resultMap>
+
   <sql id="Base_Column_List" >
     b_id, b_bookName, b_author, b_price, b_introduce, b_publisher, b_isbn, b_repertory, 
     b_cover, b_type

@@ -7,14 +7,6 @@
     <result column="u_password" property="uPassword" jdbcType="VARCHAR" />
     <result column="u_mobile" property="uMobile" jdbcType="BIGINT" />
     <result column="u_address" property="uAddress" jdbcType="VARCHAR" />
-  </resultMap>
-
-  <resultMap id="CollectionListMap" type="com.ssm.entity.S_user" >
-    <id column="u_id" property="uId" jdbcType="INTEGER" />
-    <result column="u_userName" property="uUsername" jdbcType="VARCHAR" />
-    <result column="u_password" property="uPassword" jdbcType="VARCHAR" />
-    <result column="u_mobile" property="uMobile" jdbcType="BIGINT" />
-    <result column="u_address" property="uAddress" jdbcType="VARCHAR" />
     <collection property="s_collections" javaType="java.util.List" ofType="com.ssm.entity.S_collection">
       <id column="cl_id" property="clId" jdbcType="INTEGER" />
       <result column="cl_collectorID" property="clCollectorid" jdbcType="INTEGER" />
@@ -23,14 +15,6 @@
       <result column="cl_bookPrice" property="clBookprice" jdbcType="REAL" />
       <result column="cl_bookCover" property="clBookcover" jdbcType="VARCHAR" />
     </collection>
-  </resultMap>
-
-  <resultMap id="CommentListMap" type="com.ssm.entity.S_user" >
-    <id column="u_id" property="uId" jdbcType="INTEGER" />
-    <result column="u_userName" property="uUsername" jdbcType="VARCHAR" />
-    <result column="u_password" property="uPassword" jdbcType="VARCHAR" />
-    <result column="u_mobile" property="uMobile" jdbcType="BIGINT" />
-    <result column="u_address" property="uAddress" jdbcType="VARCHAR" />
     <collection property="s_comments" javaType="java.util.List" ofType="com.ssm.entity.S_comment">
       <id column="cm_id" property="cmId" jdbcType="INTEGER" />
       <result column="cm_bookID" property="cmBookid" jdbcType="INTEGER" />
@@ -38,6 +22,20 @@
       <result column="cm_commentTime" property="cmCommenttime" jdbcType="DATE" />
       <result column="cm_content" property="cmContent" jdbcType="VARCHAR" />
       <result column="cm_buyerName" property="cmBuyername" jdbcType="VARCHAR" />
+    </collection>
+    <collection property="s_indents" javaType="java.util.List" ofType="com.ssm.entity.S_indent">
+      <id column="i_id" property="iId" jdbcType="INTEGER" />
+      <result column="i_buyerID" property="iBuyerid" jdbcType="INTEGER" />
+      <result column="i_bookID" property="iBookid" jdbcType="INTEGER" />
+      <result column="i_bargainTime" property="iBargaintime" jdbcType="TIMESTAMP" />
+      <result column="i_buyerAddress" property="iBuyeraddress" jdbcType="VARCHAR" />
+      <result column="i_bookName" property="iBookname" jdbcType="VARCHAR" />
+      <result column="i_bookCover" property="iBookcover" jdbcType="VARCHAR" />
+      <result column="i_bookPrice" property="iBookprice" jdbcType="REAL" />
+      <result column="i_bookPublisher" property="iBookpublisher" jdbcType="VARCHAR" />
+      <result column="i_commentState" property="iCommentstate" jdbcType="INTEGER" />
+      <result column="i_buyerMobile" property="iBuyermobile" jdbcType="BIGINT" />
+      <result column="i_buyerName" property="iBuyername" jdbcType="VARCHAR" />
     </collection>
   </resultMap>
 
@@ -123,7 +121,7 @@
       u_address = #{uAddress,jdbcType=VARCHAR}
     where u_id = #{uId,jdbcType=INTEGER}
   </update>
-  <select id="getCollectBookByUsername" parameterType="java.lang.String" resultMap="CollectionListMap">
+  <select id="getCollectBookByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
     SELECT *
     FROM s_user su
     LEFT JOIN s_collection scl
@@ -134,7 +132,7 @@
     SELECT *
     FROM s_user
   </select>
-  <select id="getCommentContentByUsername" parameterType="java.lang.String" resultMap="CommentListMap">
+  <select id="getCommentContentByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
     SELECT *
     FROM s_user su
     LEFT JOIN s_comment scm
