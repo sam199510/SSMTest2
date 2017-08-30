@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -49,7 +50,6 @@ public class SSMController {
     @ResponseBody
     public List<S_user> selectAllUsers(){
         List<S_user> s_users = this.userServiceI.selectAllUsers();
-        System.out.println(JSON.toJSONString(s_users));
         return s_users;
     }
 

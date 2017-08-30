@@ -2,7 +2,7 @@
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+                             http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
 
   <display-name>SSMTest2</display-name>
@@ -60,7 +60,7 @@
   </listener>
 
 
-  <!-- spring mvc servlet-->
+  <!-- spring mvc servlet 以及拦截配置-->
   <servlet>
     <servlet-name>SpringMVC</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -86,11 +86,28 @@
   <!--初始接口-->
   <welcome-file-list>
     <welcome-file>/index.jsp</welcome-file>
+    <welcome-file>/index.html</welcome-file>
   </welcome-file-list>
 
-  <!-- session配置 -->
+  <!-- session配置，超时配置，单位为分钟 -->
   <session-config>
     <session-timeout>15</session-timeout>
   </session-config>
+
+  <!-- 出错页面定义 -->
+  <error-page>
+    <exception-type>java.lang.Throwable</exception-type>
+    <location>/common/500.jsp</location>
+  </error-page>
+
+  <error-page>
+    <error-code>500</error-code>
+    <location>/common/500.htm</location>
+  </error-page>
+
+  <error-page>
+    <error-code>404</error-code>
+    <location>/common/404.htm</location>
+  </error-page>
 
 </web-app>
