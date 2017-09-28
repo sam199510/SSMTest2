@@ -12,8 +12,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.InetAddress;
+import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.Date;
 import java.util.List;
 
@@ -65,7 +71,7 @@ public class SSMController {
     private boolean uploadFile(MultipartFile file){
         if (!file.isEmpty()) {
             try {
-                String filePath = request.getSession().getServletContext().getRealPath("") + "/frontend/otherFiles/" + file.getOriginalFilename();
+                String filePath = request.getSession().getServletContext().getRealPath("/") + "/images/" + file.getOriginalFilename();
 
                 System.out.println(filePath);
 
@@ -80,12 +86,69 @@ public class SSMController {
 
     //文件上传
     @RequestMapping(value = "uploadFile" , method = RequestMethod.POST)
-    public ModelAndView uploadFileForm(@RequestParam("file")MultipartFile file){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("index");
+    @ResponseBody
+    public String uploadFileForm(@RequestParam("file")MultipartFile[] files){
 
-        uploadFile(file);
+        System.out.println("上传");
 
-        return modelAndView;
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("index");
+
+        if (files!=null&&files.length>0) {
+            for (int i = 0; i < files.length; i++) {
+                MultipartFile file=files[i];
+                if (uploadFile(file)) {
+                    return "上传成功";
+                } else {
+                    return "上传失败";
+                }
+//                uploadFile(file);
+            }
+        }
+        return "";
     }
+
+    @RequestMapping("getPicture")
+    public String getPicture() throws UnknownHostException {
+
+        String address = InetAddress.getLocalHost().getHostAddress();
+
+        return "redirect:http://"+address+":8080/getPhoto.html";
+
+    }
+
+
+    /**
+     * 获取图片
+     */
+    @RequestMapping("getPhoto")
+    protected void service(HttpServletResponse response)
+            throws ServletException, IOException {
+
+        OutputStream os = response.getOutputStream();
+        File file = new File("/Users/fei/Documents/Workspace/IDEAWorkspace/J2EE/SSMTest2/src/main/webapp/images/222.png");
+        FileInputStream fips = new FileInputStream(file);
+        byte[] btImg = readStream(fips);
+        os.write(btImg);
+        os.flush();
+
+    }
+
+    /**
+     * 读取管道中的流数据
+     */
+    public byte[] readStream(InputStream inStream) {
+
+        ByteArrayOutputStream bops = new ByteArrayOutputStream();
+        int data = -1;
+        try {
+            while((data = inStream.read()) != -1){
+                bops.write(data);
+            }
+            return bops.toByteArray();
+        }catch(Exception e){
+            return null;
+        }
+    }
+
 }
